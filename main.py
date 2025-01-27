@@ -34,8 +34,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            
-        
+
         for obj in updateable:
             obj.update(dt)
 
@@ -47,7 +46,11 @@ def main():
         for obj in asteroids:
             if obj.has_collided(player):
                 print("Game Over!")
-                exit(0) 
+                exit(0)
+            for shot in shots:
+                if obj.has_collided(shot):
+                    obj.kill()
+                    shot.kill()
             
         pygame.display.flip()
 
